@@ -21,13 +21,13 @@
 package zz.maven.test;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.util.Iterator;
 import java.util.Map;
 
 import org.docx4j.openpackaging.packages.PresentationMLPackage;
 import org.docx4j.openpackaging.parts.Part;
+import org.docx4j.openpackaging.parts.PartName;
 import org.docx4j.openpackaging.parts.PresentationML.SlidePart;
 import org.pptx4j.convert.out.svginhtml.SvgExporter;
 import org.slf4j.Logger;
@@ -57,10 +57,11 @@ public class RenderAsSvgInHtml {
         FileWriter fw = new FileWriter("/Users/zhangle/Documents/work/xtech/tmp/test.html");
         BufferedWriter bw = new BufferedWriter(fw);
         try {
-            Iterator partIterator = presentationMLPackage.getParts().getParts().entrySet().iterator();
+            Iterator<Map.Entry<PartName, Part>> partIterator = presentationMLPackage.getParts().getParts().entrySet()
+                    .iterator();
             while (partIterator.hasNext()) {
 
-                Map.Entry pairs = (Map.Entry) partIterator.next();
+                Map.Entry<PartName, Part> pairs = partIterator.next();
 
                 Part p = (Part) pairs.getValue();
                 if (p instanceof SlidePart) {
