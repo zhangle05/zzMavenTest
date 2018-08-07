@@ -10,6 +10,7 @@
     <url>http://maven.apache.org</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mysql.version>8.0.11</mysql.version>
     </properties>
     <dependencies>
 
@@ -19,12 +20,12 @@
             <version>2.4</version>
         </dependency>
 
+        <!-- MySQL jdbc -->
         <dependency>
-            <groupId>org.docx4j</groupId>
-            <artifactId>docx4j</artifactId>
-            <version>3.3.7-SNAPSHOT</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>
