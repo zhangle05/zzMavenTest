@@ -21,7 +21,7 @@ public class ZZTest {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println(new java.util.Date(1497515963246L));
+        System.out.println(System.currentTimeMillis());
         // String inputFile =
         // "/Users/zhangle/dev/jingyou/normal_chinese_code.txt";
         // String outputFile = "/Users/zhangle/dev/jingyou/code.txt";
