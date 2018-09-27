@@ -4,6 +4,8 @@
 package test;
 
 import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -33,9 +35,18 @@ public class ClientIPReportor {
     public static void main(String[] args) {
         ClientIPReportor reportor = new ClientIPReportor();
         Map<String, String> keyValues = new HashMap<String, String>();
+        String currentIp = "127.0.0.1";
+        try {
+            InetAddress iAddress = InetAddress.getLocalHost();
+            currentIp = iAddress.getHostAddress();
+            System.out.println("Current IP address : " +currentIp);
+        } catch (UnknownHostException e1) {
+            e1.printStackTrace();
+        }
         keyValues.put("ts", String.valueOf(System.currentTimeMillis()));
         keyValues.put("client_id", "123");
         keyValues.put("client_name", "Golden Key");
+        keyValues.put("local_ip", currentIp);
         reportor.report(keyValues);
     }
 
