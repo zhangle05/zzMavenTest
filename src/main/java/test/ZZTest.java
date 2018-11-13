@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 
 /**
  * @author zhangle
@@ -22,6 +23,8 @@ public class ZZTest {
      */
     public static void main(String[] args) {
         System.out.println(System.currentTimeMillis());
+        String secret = UUID.randomUUID().toString() + UUID.randomUUID().toString();
+        System.out.println(secret.replace("-", ""));
         // String inputFile =
         // "/Users/zhangle/dev/jingyou/normal_chinese_code.txt";
         // String outputFile = "/Users/zhangle/dev/jingyou/code.txt";
