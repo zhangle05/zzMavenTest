@@ -30,8 +30,12 @@ public class Graphics2DTest {
      */
     public static void main(String[] args) {
         Graphics2DTest g2dt = new Graphics2DTest();
-//        BufferedImage img = g2dt.generateCertImage("E", "1234567", "测试");
-        BufferedImage img = g2dt.generateCertImage("12345678","张文海","513401198310040444","70","1","2","808");
+        // BufferedImage img = g2dt.generateCertImage("E", "1234567", "测试");
+        // BufferedImage img =
+        // g2dt.generateCertImage("12345678","张文海","513401198310040444","70",
+        // System.currentTimeMillis() - 3600 * 1000 * 24l);
+        BufferedImage img = g2dt.generateSelectedCertImage("张文海", "513401198310040444", "立涛园", "1", "2", "808",
+                System.currentTimeMillis() - 3600 * 1000 * 24l);
         String fileName = "test.png";
         g2dt.saveImage(fileName, img);
     }
@@ -53,7 +57,7 @@ public class Graphics2DTest {
         Graphics2D g2d = result.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         // draw background
-        g2d.rotate(-Math.PI/4);
+        g2d.rotate(-Math.PI / 4);
         g2d.setFont(new Font("Open Sans, Lucida Sans", Font.PLAIN, 40));
         String bgText = "人才认定      结果查询      人才认定      结果查询      人才认定      结果查询      人才认定      结果查询";
         int x0 = -50, y0 = 100;
@@ -68,7 +72,7 @@ public class Graphics2DTest {
         // draw main content
         Font normalFont = new Font("Open Sans, Lucida Sans", Font.PLAIN, 16);
         g2d.setFont(normalFont);
-        g2d.rotate(Math.PI/4);
+        g2d.rotate(Math.PI / 4);
         g2d.setColor(Color.BLACK);
         g2d.drawString("第1页 / 共1页", 490, 10);
         g2d.drawString("依 " + name + " 的申请，经查询金梧桐人才认定系统，结果如下：", 100, 120);
@@ -113,16 +117,67 @@ public class Graphics2DTest {
         return result;
     }
 
-    private BufferedImage generateCertImage(String sn, String name, String id, String area, String building,
-            String tower, String room) {
-        int width = 1182, height = 1184;
+    private BufferedImage generateCertImage(String sn, String name, String id, String area, long time) {
+        int width = 1185, height = 1207;
+        BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = result.createGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        // draw background
+        try {
+            File png = new File("D:\\Documents\\zuzhibu\\人才房\\网站文档\\approved-cert.png");
+            Image img = ImageIO.read(png);
+            g2d.drawImage(img, 0, 0, width, height, null);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+        }
+        // draw main content
+        Font normalFont = new Font("Open Sans, Lucida Sans", Font.PLAIN, 25);
+        g2d.setFont(normalFont);
+        g2d.setColor(Color.BLACK);
+        // draw application info
+        g2d.drawString(sn, 807, 68);
+        g2d.drawString(name, 187, 383);
+        g2d.drawString(id, 597, 383);
+        g2d.drawString(area, 960, 445);
+        // g2d.drawString(building, 380, 550);
+        // g2d.drawString(tower, 493, 550);
+        // g2d.drawString(room, 607, 550);
+        // draw date
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT+8:00"));
+        c.setTime(new java.util.Date(time));
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH) + 1;
+        int day = c.get(Calendar.DATE);
+        g2d.drawString(String.valueOf(year), 530, 1126);
+        g2d.drawString(String.valueOf(month), 641, 1126);
+        g2d.drawString(String.valueOf(day), 721, 1126);
+
+        try {
+            File png = new File("D:\\Documents\\zuzhibu\\人才房\\需求文档\\stamp.png");
+            Image img = ImageIO.read(png);
+            // rotation will make the stamp fuzzy
+            // double theta = Math.random();
+            // g2d.rotate(theta, 925, 125);
+            g2d.drawImage(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH), 549, 919, 200, 200, null);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+        }
+
+        return result;
+    }
+
+    private BufferedImage generateSelectedCertImage(String name, String id, String community, String building,
+            String tower, String room, long time) {
+        int width = 1183, height = 929;
         BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = result.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         // draw background
         InputStream stampInput = null;
         try {
-            File png = new File("D:\\Documents\\zuzhibu\\人才房\\需求文档\\approved-cert2.png");
+            File png = new File("D:\\Documents\\zuzhibu\\人才房\\网站文档\\selected-cert.png");
             Image img = ImageIO.read(png);
             g2d.drawImage(img, 0, 0, width, height, null);
         } catch (Exception ex) {
@@ -140,41 +195,34 @@ public class Graphics2DTest {
         g2d.setFont(normalFont);
         g2d.setColor(Color.BLACK);
         // draw application info
-        g2d.drawString(sn, 807, 46);
-        g2d.drawString(name, 187, 360);
-        g2d.drawString(id, 597, 360);
-        g2d.drawString(area, 325, 489);
-        g2d.drawString(building, 380, 550);
-        g2d.drawString(tower, 493, 550);
-        g2d.drawString(room, 607, 550);
+        g2d.drawString(name, 187, 191);
+        g2d.drawString(id, 597, 191);
+        g2d.drawString(community, 870, 252);
+        g2d.drawString(building, 270, 316);
+        g2d.drawString(tower, 383, 316);
+        g2d.drawString(room, 497, 316);
         // draw date
         Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT+8:00"));
+        c.setTime(new java.util.Date(time));
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;
         int day = c.get(Calendar.DATE);
-        g2d.drawString(String.valueOf(year), 530, 1116);
-        g2d.drawString(String.valueOf(month), 641, 1116);
-        g2d.drawString(String.valueOf(day), 721, 1116);
+        g2d.drawString(String.valueOf(year), 735, 876);
+        g2d.drawString(String.valueOf(month), 850, 876);
+        g2d.drawString(String.valueOf(day), 925, 876);
 
         try {
-            File png = new File("D:\\Documents\\zuzhibu\\人才房\\需求文档\\stamp.png");
+            File png = new File("D:\\Documents\\zuzhibu\\人才房\\网站文档\\stamp.png");
             Image img = ImageIO.read(png);
             // rotation will make the stamp fuzzy
             // double theta = Math.random();
             // g2d.rotate(theta, 925, 125);
-            g2d.drawImage(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH), 549, 919, 200, 200, null);
+            g2d.drawImage(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH), 750, 690, 200, 200, null);
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
-            if (stampInput != null) {
-                try {
-                    stampInput.close();
-                } catch (Exception ignore) {
-                }
-            }
         }
 
         return result;
     }
-
 }
