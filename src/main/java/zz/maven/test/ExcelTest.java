@@ -47,8 +47,8 @@ public class ExcelTest {
     }
 
     public void update() {
-        String inputFile = "D:\\Documents\\lasa\\budget.xlsx";
-        String outputFile = "D:\\Documents\\lasa\\budget2.xlsx";
+        String inputFile = "D:\\Documents\\aiit\\oa\\budget.xlsx";
+        String outputFile = "D:\\Documents\\aiit\\oa\\budget-gen.xlsx";
         Workbook wb = this.updateExcel(inputFile);
         try {
             FileOutputStream outputStream = new FileOutputStream(outputFile);
