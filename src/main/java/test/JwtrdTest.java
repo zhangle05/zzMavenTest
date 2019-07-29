@@ -28,28 +28,25 @@ import net.sf.json.JSONObject;
 public class JwtrdTest {
 
     public static void main(String[] args) {
-        String jsonStr = "[\n"
-                + "{\"user_name\":\"焦国泰\",\"idcard_no\":\"422823199508294476\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-8907043468147537070\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"李迎旭\",\"idcard_no\":\"340826199104030850\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-5816720979247804512\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"何俊贤\",\"idcard_no\":\"421127198908143521\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-4198547954896188769\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"吴云\",\"idcard_no\":\"340311198806101928\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"1168549759605883473\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"李伯玮\",\"idcard_no\":\"654001198712111436\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"4654899874209089275\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"郭庆林\",\"idcard_no\":\"410522199104043236\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-7450990206056837601\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"马媛\",\"idcard_no\":\"331021198401191262\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"5743234085635637862\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"魏林盛\",\"idcard_no\":\"342224199108300033\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-4798689438294650961\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"张贵成\",\"idcard_no\":\"340321198801207072\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-7469832146905117099\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"郑露真\",\"idcard_no\":\"330881198909270729\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-8884672740363517423\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"李佶谦\",\"idcard_no\":\"430406199311010048\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-2221323954610420577\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/07/01/\"},\n"
-                + "{\"user_name\":\"张鸿飞\",\"idcard_no\":\"330521199107090517\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-455029934950757566\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"蔡子婷\",\"idcard_no\":\"530102199212021122\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-1414106906219362112\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"寿建烽\",\"idcard_no\":\"339005199311071613\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-3118293591488051344\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"李莹\",\"idcard_no\":\"330621198901136384\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-3555022688460782056\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"潘方依\",\"idcard_no\":\"339005199207175121\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"3715653725807462306\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/07/01/\"},\n"
-                + "{\"user_name\":\"赵艳超\",\"idcard_no\":\"412827198706177536\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"252694185890693460\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"田朋飞\",\"idcard_no\":\"341221198712051294\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-4270423258506114715\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/29/\"},\n"
-                + "{\"user_name\":\"胡常征\",\"idcard_no\":\"34242619860512261X\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-3437999261800903833\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"},\n"
-                + "{\"user_name\":\"刘秋荣\",\"idcard_no\":\"350821198807220437\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"-4530518311297070104\",\"file_dir\":\"/home/hengtj/server/file_upload/other/2019/06/28/\"}\n"
-                + "]";
+        String jsonStr = "[\n" + 
+                "{\"user_name\":\"毛科栋\",\"idcard_no\":\"3.30227E+17\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"尤翔远\",\"idcard_no\":\"330226199310151595\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"马佳彬\",\"idcard_no\":\"330683199206132019\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"谷秀青\",\"idcard_no\":\"340521199302233319\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"童乐萍\",\"idcard_no\":\"321088199407046123\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"许诺\",\"idcard_no\":\"330106199002040411\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"姚伟锦\",\"idcard_no\":\"440182199410123939\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"严蓉\",\"idcard_no\":\"320911199306056028\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"王慧敏\",\"idcard_no\":\"331081198709191425\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"王统仁\",\"idcard_no\":\"350181198701281950\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"王雪峰\",\"idcard_no\":\"412724198709167419\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"王宜将\",\"idcard_no\":\"370882198905071611\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"张晓梅\",\"idcard_no\":\"130435198704261223\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"孙颢萌\",\"idcard_no\":\"210603199109162049\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"林昱川\",\"idcard_no\":\"350823199102210017\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "{\"user_name\":\"梁春冉\",\"idcard_no\":\"130521199302192773\",\"personnel_type\":\"6\",\"personnel_type_name\":\"F类人才\",\"talent_image\":\"\"},\n" + 
+                "\n" + 
+                "]";
         JSONArray arr = JSONArray.fromObject(jsonStr);
         JwtrdTest t = new JwtrdTest();
         for (int i = 0; i < arr.size(); i++) {
@@ -64,9 +61,8 @@ public class JwtrdTest {
 
     private void exportJwtrdImg(JSONObject json) throws IOException {
         String id = json.getString("idcard_no");
-        String imgFile = json.getString("talent_image");
-        String dir = json.getString("file_dir");
-        dir = dir.replace("/", "_");
+        String imgFile = json.getString("user_name") + ".png";
+        String dir = "jwtrd";
         // get key and sign
         JSONObject input = new JSONObject();
         input.put("id_type", "0");
