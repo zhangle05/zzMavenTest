@@ -42,6 +42,7 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -777,4 +778,50 @@ public class WebUtils {
         return result;
     }
 
+    public static String uploadFile(String filePathName, String postUrl) throws ClientProtocolException, IOException {
+        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+        CloseableHttpResponse httpResponse = null;
+        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(200000).setSocketTimeout(200000000)
+                .build();
+        HttpPost httpPost = new HttpPost(postUrl);
+        httpPost.setConfig(requestConfig);
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+        // multipartEntityBuilder.setCharset(Charset.forName("UTF-8"));
+
+        // File file = new File("F:\\Ken\\1.PNG");
+        // FileBody bin = new FileBody(file);
+
+        File file = new File(filePathName);
+
+        // multipartEntityBuilder.addBinaryBody("file",
+        // file,ContentType.create("image/png"),"abc.pdf");
+        // 当设置了setSocketTimeout参数后，以下代码上传PDF不能成功，将setSocketTimeout参数去掉后此可以上传成功。上传图片则没有个限制
+        // multipartEntityBuilder.addBinaryBody("file",file,ContentType.create("application/octet-stream"),"abd.pdf");
+        multipartEntityBuilder.addBinaryBody("file", file);
+        // multipartEntityBuilder.addPart("comment", new StringBody("This is
+        // comment", ContentType.TEXT_PLAIN));
+        HttpEntity httpEntity = multipartEntityBuilder.build();
+        httpPost.setEntity(httpEntity);
+
+        httpResponse = httpClient.execute(httpPost);
+        HttpEntity responseEntity = httpResponse.getEntity();
+        int statusCode = httpResponse.getStatusLine().getStatusCode();
+        String result = "";
+        if (statusCode == 200) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(responseEntity.getContent()));
+            StringBuffer buffer = new StringBuffer();
+            String str = "";
+            while (!StringUtils.isEmpty(str = reader.readLine())) {
+                buffer.append(str);
+            }
+
+            result = buffer.toString();
+        }
+
+        httpClient.close();
+        if (httpResponse != null) {
+            httpResponse.close();
+        }
+        return result;
+    }
 }
