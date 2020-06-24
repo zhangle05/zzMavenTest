@@ -69,9 +69,9 @@ public class QrTest {
                 if (x > 0 && x < 170 && y > 0 && y < 170) {
 //                    Color color = new Color(231, 144, 56);
 //                    int colorInt = color.getRGB();
-                    int num1 = (int) (250 - (250.0 - 190.0) / matrix.getHeight() * (y + 1));
-                    int num2 = (int) (185 - (185.0 - 144.0) / matrix.getHeight() * (y + 1));
-                    int num3 = (int) (50 - (50.0 - 26.0) / matrix.getHeight() * (y + 1));
+                    int num1 = (int) (250 - (250.0 - 150.0) / matrix.getHeight() * (y + 1));
+                    int num2 = (int) (185 - (185.0 - 70.0) / matrix.getHeight() * (y + 1));
+                    int num3 = (int) (50 - (50.0 - 40.0) / matrix.getHeight() * (y + 1));
                     Color color = new Color(num1, num2, num3);
                     int colorInt = color.getRGB();
                     pixels[y * width + x] = matrix.get(x, y) ? colorInt : 16777215;
@@ -95,9 +95,9 @@ public class QrTest {
                     // 在图片四周形成边框
                 } else {
                     // 二维码颜色
-                    int num1 = (int) (250 - (250.0 - 190.0) / matrix.getHeight() * (y + 1));
-                    int num2 = (int) (185 - (185.0 - 144.0) / matrix.getHeight() * (y + 1));
-                    int num3 = (int) (50 - (50.0 - 26.0) / matrix.getHeight() * (y + 1));
+                    int num1 = (int) (250 - (250.0 - 150.0) / matrix.getHeight() * (y + 1));
+                    int num2 = (int) (185 - (185.0 - 70.0) / matrix.getHeight() * (y + 1));
+                    int num3 = (int) (50 - (50.0 - 40.0) / matrix.getHeight() * (y + 1));
                     System.out.println("[" + num1 + "," + num2 + "," + num3 + "]");
                     Color color = new Color(num1, num2, num3);
                     int colorInt = color.getRGB();
