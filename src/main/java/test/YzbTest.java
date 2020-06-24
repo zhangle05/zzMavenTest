@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -246,6 +247,9 @@ public class YzbTest {
      * @param args
      */
     public static void main(String[] args) {
+        long time = 241019070252l;
+        java.util.Date d = new java.util.Date(time);
+        System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d));
         YzbTest yt_online = new YzbTest("wx5fddb9e91b805950",
                 "ff492f03782e2e30c4341066e19c26b2",
                 "9Ha9iiRVqXfYCBzUYHtS9hR8Y3e8VFwT9SMCwP-vCk8");
