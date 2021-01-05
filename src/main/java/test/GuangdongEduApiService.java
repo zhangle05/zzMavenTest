@@ -52,7 +52,7 @@ public class GuangdongEduApiService {
     private static final int IM_MSG_SEND_TYPE = 26;
     private static final int IM_MSG_SUB_SEND_TYPE = 301;
     private static final String YCL_LOGO_URL = "http://7rfjyq.com2.z0.glb.qiniucdn.com/image/yuncelian_logo.png";
-    private static final String YCL_IM_TITLE = "云测练";
+    private static final String YCL_IM_TITLE = "在线课堂";
 
 //    private String APP_KEY = "8ff90c50-2059-4f43-bca7-e8bbc905358d";                //预发布平台
     private String APP_KEY = "726e3eed-0749-4015-aae8-44fbb8be4f17";              // 正式平台
@@ -376,7 +376,7 @@ public class GuangdongEduApiService {
 //        System.out.println("=============school info===============");
 //        System.out.println(svc.getSchoolInfo("49526"));
 //        System.out.println("=============single message===============");
-//        System.out.println(svc.sendSingleMessage("zs", "49568", "teacher", "云测练测试发送消息", "1278168", "www.yuncelian.com.cn", "12345"));
+//        System.out.println(svc.sendSingleMessage("zs", "49568", "teacher", "在线课堂测试发送消息", "1278168", "www.yuncelian.com.cn", "12345"));
 //        System.out.println("=============batch message===============");
 //        System.out.println(svc.sendBatchMessage("zs", "1015835", "teacher", "309APP_Test", "www.yuncelian.com.cn", "12345"));
 //        System.out.println(svc.sendIMClassMessageWithErrorLog("gz", "123", "123", 123, "123", 123, "123", "123", "123",
