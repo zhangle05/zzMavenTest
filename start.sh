@@ -2,7 +2,8 @@
 
 EXT_HOME=$JAVA_HOME/jre/lib/ext
 START_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-MAIN_CLASS=test.Graphics2DTest
+echo '$1:'$1
+MAIN_CLASS=$1
 OS=""
 
 if [[ $OSTYPE = linux* ]] || [[ $OSTYPE = unix* ]]

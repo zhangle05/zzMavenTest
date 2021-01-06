@@ -147,6 +147,18 @@
             <artifactId>javase</artifactId>
             <version>3.3.0</version>
         </dependency>
+        
+        <!-- Selenium library -->
+        <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-java</artifactId>
+          <version>3.14.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>3.14.0</version>
+        </dependency>
     </dependencies>
 
     <repositories>

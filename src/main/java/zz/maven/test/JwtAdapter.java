@@ -205,7 +205,8 @@ public class JwtAdapter {
         JWT_SERVER_HOST = "http://xsrc.xs.zj.cn";
         JWT_SERVER_PORT = "80";
         JwtAdapter ja = new JwtAdapter();
-        String result = ja.syncGetApplication(0, "522501198301120414", TALENT_IDENTIFY_URI);
+        String result = ja.syncGetApplication(5, "051330119630130014", TALENT_IDENTIFY_URI);
+        System.out.println("result is:" + result);
         JSONObject json = JSONObject.fromObject(result);
         JSONObject dataJson = json.getJSONObject("data");
         JSONArray arr = dataJson.getJSONArray("list");
