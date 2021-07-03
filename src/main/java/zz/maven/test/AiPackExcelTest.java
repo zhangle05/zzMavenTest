@@ -52,8 +52,19 @@ public class AiPackExcelTest {
         AiPackExcelTest et = new AiPackExcelTest();
         String inputFile = TEMPLATE_FOLDER + "设计模板位置信息.xlsx";
         String outputFile = TEMPLATE_FOLDER + "template.json";
+        System.out.println("Command line arguments:");
         for (String arg : args) {
             System.out.println(arg);
+        }
+        String argInputFile = System.getProperty("inputFile");
+        String argOutputFile = System.getProperty("outputFile");
+        System.out.println("argInputFile:" + argInputFile);
+        System.out.println("argOutputFile:" + argOutputFile);
+        if (!StringUtils.isEmpty(argInputFile)) {
+            inputFile = argInputFile;
+        }
+        if (!StringUtils.isEmpty(argOutputFile)) {
+            outputFile = argOutputFile;
         }
         try {
             File f = new File(inputFile);
@@ -533,7 +544,7 @@ public class AiPackExcelTest {
         int rowIdx = -1;
         for (int i = headerRow.getFirstCellNum(); i <= headerRow.getLastCellNum(); i++) {
             Cell header = headerRow.getCell(i);
-            if (columnName.equals(header.getStringCellValue())) {
+            if (columnName.equals(getCellString(header))) {
                 rowIdx = i;
                 break;
             }
@@ -545,7 +556,7 @@ public class AiPackExcelTest {
         for (int i = 1; i <= sheet.getLastRowNum(); i++) {
             Row row = sheet.getRow(i);
             Cell c = row.getCell(rowIdx);
-            String mapStr = c.getStringCellValue();
+            String mapStr = getCellString(c);
             if (StringUtils.isEmpty(mapStr) || mapStr.indexOf('=') < 0) {
                 continue;
             }
@@ -562,9 +573,9 @@ public class AiPackExcelTest {
         String str = null;
         for (int i = headerRow.getFirstCellNum(); i <= headerRow.getLastCellNum(); i++) {
             Cell header = headerRow.getCell(i);
-            if (columnName.equals(header.getStringCellValue())) {
+            if (columnName.equals(getCellString(header))) {
                 Cell c = row.getCell(i);
-                str = c.getStringCellValue();
+                str = getCellString(c);
                 break;
             }
         }
@@ -585,4 +596,15 @@ public class AiPackExcelTest {
         return result;
     }
 
+    private String getCellString(Cell c) {
+        CellType t = c.getCellType();
+        if (t == CellType.BLANK) {
+            return "";
+        } else if (t == CellType.NUMERIC) {
+            return String.valueOf(c.getNumericCellValue());
+        } else if (t == CellType.STRING) {
+            return c.getStringCellValue();
+        }
+        return "";
+    }
 }
